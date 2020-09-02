@@ -39,4 +39,12 @@ public class WebServiceConfig {
         endpoint.publish("/Hello");
         return endpoint;
     }
+
+    @Bean
+    public Endpoint endpoint2() {
+        EndpointImpl endpoint = new EndpointImpl(bus, new HelloPortImpl());
+        endpoint.publish("/Hello2");
+        return endpoint;
+    }
+
 }
