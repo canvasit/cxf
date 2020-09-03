@@ -7,6 +7,7 @@
         <version>3.4.1-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
+    <packaging>war</packaging>
     <artifactId>spring-boot-sample-ws-cxf</artifactId>
     <name>Spring Boot CXF Web Services Sample</name>
     <description>Spring Boot CXF Web Services Sample</description>
@@ -39,11 +40,40 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
+            <scope>test</scope>
         </dependency>
 
+
+
+		<!-- MAKE app run on stand-alone tomcat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- MAKE app run on stand-alone wildfly -->
+		<!-- 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency>
+		 -->
+
+		
 		<!-- DEVELOPER TOOLS -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

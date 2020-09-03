@@ -19,6 +19,7 @@
 package sample.ws;
 
 import org.apache.cxf.transport.servlet.CXFServlet;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -26,12 +27,14 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
 //CHECKSTYLE:OFF
 @SpringBootApplication
-@ImportResource({ "classpath:META-INF/cxf/cxf.xml", "classpath:beans.xml" })
-//@ImportResource({ "classpath:beans.xml" })
+@Configuration
+//@ImportResource({ "classpath:META-INF/cxf/cxf.xml", "classpath:beans.xml" })
+@ImportResource({ "classpath:beans.xml" })
 public class SampleWsApplication extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(SampleWsApplication.class, args);
@@ -47,7 +50,10 @@ public class SampleWsApplication extends SpringBootServletInitializer {
 	// Overwrites the application property: cxf.path=/Service
     @Bean
     public ServletRegistrationBean<CXFServlet> servletRegistrationBean(ApplicationContext context) {
-        return new ServletRegistrationBean<CXFServlet>(new CXFServlet(), "/api/*");
+    	ServletRegistrationBean<CXFServlet> bean = new ServletRegistrationBean<CXFServlet>(new CXFServlet(), "/api/*");
+    	bean.setLoadOnStartup(1);
+    	return bean;
     }
 
+	
 }
