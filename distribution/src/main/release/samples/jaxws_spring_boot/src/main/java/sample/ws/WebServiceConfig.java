@@ -18,6 +18,9 @@
  */
 package sample.ws;
 
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.xml.ws.Endpoint;
 
 import org.apache.cxf.Bus;
@@ -31,21 +34,35 @@ import sample.ws.service.HelloPortImpl;
 @Configuration
 public class WebServiceConfig {
 
-    @Autowired
-    private Bus bus;
+	@Autowired
+	private Bus bus;
 
-    @Bean
-    public Endpoint endpoint() {
-        EndpointImpl endpoint = new EndpointImpl(bus, new HelloPortImpl());
-        endpoint.publish("/Hello");
-        return endpoint;
-    }
+	@Bean
+	public Endpoint endpoint() {
+		EndpointImpl endpoint = new EndpointImpl(bus, new HelloPortImpl());
+		endpoint.publish("/Hello");
+		return endpoint;
+	}
 
-    @Bean
-    public Endpoint endpoint2() {
-        EndpointImpl endpoint = new EndpointImpl(bus, new HelloPortImpl());
-        endpoint.publish("/Hello2");
-        return endpoint;
-    }
+	@Bean
+	public Endpoint endpoint2() {
+		EndpointImpl endpoint = new EndpointImpl(bus, new HelloPortImpl());
+		endpoint.publish("/Hello2");
+		return endpoint;
+	}
 
+	@Bean
+	public ServletContextListener myListener() {
+		return new ServletContextListener() {
+
+			@Override
+			public void contextInitialized(ServletContextEvent sce) {
+			}
+
+			@Override
+			public void contextDestroyed(ServletContextEvent sce) {
+			}
+
+		};
+	}
 }

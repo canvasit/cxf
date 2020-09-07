@@ -24,11 +24,12 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+    	<!-- WSX -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
             <version>${project.version}</version>
-            <exclusions><!-- CXF uses java.util.logging by default -->
+            <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
@@ -47,13 +48,31 @@
             <scope>test</scope>
         </dependency>
 
+		<!-- 		
+	    <dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-transports-http</artifactId>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+	    </dependency>
+	     -->
 
 
 		<!-- MAKE app run on stand-alone tomcat -->
 		<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-tomcat</artifactId>
+		   <scope>provided</scope>
+		</dependency>
+		<!-- 
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>provided</scope>
 		</dependency>
+		 -->
 
 		<!-- MAKE app run on stand-alone wildfly -->
 		<!-- 
@@ -70,10 +89,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		 -->
-
-		
+		 
 		<!-- DEVELOPER TOOLS -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -19,7 +19,6 @@
 package sample.ws;
 
 import org.apache.cxf.transport.servlet.CXFServlet;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -36,15 +35,15 @@ import org.springframework.context.annotation.ImportResource;
 //@ImportResource({ "classpath:META-INF/cxf/cxf.xml", "classpath:beans.xml" })
 @ImportResource({ "classpath:beans.xml" })
 public class SampleWsApplication extends SpringBootServletInitializer {
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SampleWsApplication.class, args);
-    }
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(SampleWsApplication.class);
 	}	  
 
+	public static void main(String[] args) throws Exception {
+		SpringApplication.run(SampleWsApplication.class, args);
+	}
 
     // Replaces the need for web.xml
 	// Overwrites the application property: cxf.path=/Service
@@ -55,5 +54,4 @@ public class SampleWsApplication extends SpringBootServletInitializer {
     	return bean;
     }
 
-	
 }
